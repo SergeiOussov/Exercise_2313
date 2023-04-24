@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public class UserDetailsServiceImp implements UserDetailsService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserDetailsServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -23,6 +23,6 @@ public class UserDetailsServiceImp implements UserDetailsService {
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
         }
-        return new UserDetailsImp(user.get());
+        return user.get();
     }
 }
